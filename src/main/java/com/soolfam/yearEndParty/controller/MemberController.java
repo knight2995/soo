@@ -73,11 +73,13 @@ public class MemberController {
 
         if(memberService.checkDuplicatedEmail(email) == true)
         {
-            return new ResponseEntity(new Response("Duplicate"),HttpStatus.CONFLICT);
+            //return new ResponseEntity(new Response("Duplicate"),HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Duplicate",HttpStatus.CONFLICT);
         }
         else
         {
-            return new ResponseEntity(new Response("Not Duplicate"),HttpStatus.OK);
+            //return new ResponseEntity(new Response("Not Duplicate"),HttpStatus.OK);
+            return new ResponseEntity<>("Not Duplicate",HttpStatus.OK);
         }
     }
 
