@@ -1,0 +1,27 @@
+name: Java CI with Gradle
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: joschi/setup-jdk@v2
+      with:
+        java-version: '14' # The OpenJDK version to make available on the path
+        architecture: 'x64'
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew build
+    - name: install putty-tools
+      run: sudo apt-get install putty-tools
+    - name: delivery jar to my server
+      env:
+        secret_pw: ${{ secrets.PASSWD }}
+      run: echo n | pscp -P 22 -pw "$secret_pw" build/libs/*.jar moneybook@139.150.64.36:/home/moneybook
