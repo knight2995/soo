@@ -1,4 +1,4 @@
-name: Java CI with Gradle
+name: Spring CI with Gradle
 
 on:
   pull_request:
@@ -18,10 +18,10 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build -Pprofile=dev -Ddb_passwd=duckbo --exclude-task test
     - name: install putty-tools
       run: sudo apt-get install putty-tools
     - name: delivery jar to my server
       env:
         secret_pw: ${{ secrets.PASSWD }}
-      run: echo n | pscp -P 22 -pw "$secret_pw" build/libs/*.jar moneybook@139.150.64.36:/home/moneybook
+      run: echo n | pscp -P 22 -unsafe -pw "$secret_pw" build/libs/*.jar moneybook@139.150.64.36:/home/moneybook
