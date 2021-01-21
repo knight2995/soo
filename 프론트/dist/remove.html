@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>술팟 온라인 송년회</title>
+        <meta name = "apple-mobile-web-app-capable" content="yes">
+        <meta name = "mobile-web-app-capable" content="yes">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style_main.css">
+        <link rel="stylesheet" href="css/common.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" language="javascript" src = "js/ajax_call.js">
+        </script>
+    </head>
+
+    <body data-locale="ko" id = "square">
+        <div id = "root" name = "root" class = root>
+
+            <div class="fixedBG">
+                <video autoplay muted loop="" playsinline="" src="resources/background.mp4"></video>
+            </div>
+
+            <div class = section>
+                
+            </div>
+
+            <div class = "left">  </div>
+            <div id = "content" class = "right">
+                <h1>술팟의 즐거운 언택트 모임</h1><br>
+                <p>
+                <h3>송년회에 초대합니다.</h3>
+                <h4>안녕하신가요. 여러분 ?</h4>
+                <h4>한 해의 마무리를 하기 위해</h4>
+                <h4>송년회 자리를 마련했습니다.</h4>
+                <h4>바쁘신 줄 알지만 부디 참석해서 자리를 빛내주세요.</h4>
+                <h4>일시 - 차후 투표</h4>
+                </p>
+            
+                <div id = "enroll" onclick="location.href='form.html'">참여하기</div>
+            </div>
+
+            <div id = "comment"class="right-margin"> </div>
+        </div>
+        <div id = "form"> hellllllooooooo</div>
+        <script>
+            $.ajax({
+                url : "/form.html",
+                dataType : "html",
+                type : "get",
+                success : function(result) {
+                    const btn = $('#enroll');
+                    const posY = btn.offset().top;
+                    $("#form").offset({top: posY + 50});
+                    //$("#form").append($(result).fadeIn());
+                }
+            });
+        </script>
+    </body>

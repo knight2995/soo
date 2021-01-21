@@ -1,0 +1,334 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title> End Year Party a.k.a 송년회</title>
+
+    <link rel="stylesheet" href="css/coupang.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="root">
+
+        <header style="display: none";></header>
+        <div class="fixedBG">
+            <video autoplay muted loop="0" playsinline="" src="resources/coupang.mp4"></video>
+        </div>
+        
+        <div class= "section fullHeight titleWrapper">
+            <div class = 'title'>
+                <img src="resources/title.png" title="title">
+            </div>
+            <button class="scrollDown" style="display: block;">
+                <a href="javascript:fnMove();">
+                    <img src="resources/hero-scroll-down.svg" alt="scroll down">
+                </a>
+            </button>
+        </div>
+
+        <div id="content_page">
+            <div class="section fullHeight decsiptionWrapper">
+                <div class="description" style="font-size: 18px; letter-spacing: -1.5px;">
+                    <h5>송년회에 초대합니다.</h3>
+                    <h5>안녕하신가요. 여러분 ?</h4>
+                    <h5>한 해의 마무리를 하기 위해</h4>
+                    <h5>송년회 자리를 마련했습니다.</h4>
+                    <h5>바쁘신 줄 알지만 부디 참석해서 자리를 빛내주세요.</h4>
+                    <h5>일시 - 차후 투표</h4>
+                </div>
+            </div>
+            <div class="section blkBg speakerWrapper">
+                <div id = 'swiper-container' class="swiper-container">
+                    <h4>speakers</h4>
+                    <div id="Participants_list" class="swiper-wrapper" style="cursor: url(&quot;./img/right_cursor.cur&quot;), auto;">
+                <!-- Add Pagination -->
+                </div>
+            </div>
+            <div class="section fullHeight"></div>
+            <div class="contents">
+                <form>
+                    <fieldset>
+                        <legend>참여 신청</legend>
+                        <ol>
+                            <li>
+                              <label for="name">이름</label>
+                              <input id="name" name="name" type="text" placeholder="6자 이내">
+                            </li>
+                            <li>
+                              <label for="email">이메일</label>
+                              <input id="email" name="email" type="text">
+                              <input type="button" id ="email-verify" value="중복 검증"> 
+                            </li>
+                            <li>
+                              <label for="phone">휴대폰</label>
+                              <input id="phone" name="phone" type="text">
+                              <input type="button" id ="verify" value="중복 검증">
+                            </li> 
+                            <li>
+                                <label for="comment">각오 한마디</label>
+                                <input id="comment" name="comment" type="text" placeholder="15자 이내">
+                            </li>
+                        </ol>
+                    </fieldset>
+                    <fieldset>
+                        <input type="button" id="apply" value="참여">
+                    </fieldset>
+                </form>
+            </div>
+            
+            
+
+        </div>
+        <footer>
+            <div class="companyLogo">
+                <img src="resources/logo.png" alt="coupang logo">
+            </div>
+            <div class="footerUi">
+                <p class="privacyPolicy" data-session="privacy">design by 김수정</p>
+                <p><span>©</span>술!팟!</p>
+            </div>
+        </footer>
+
+
+
+    </div>
+
+    <script>
+
+
+window.onscroll = function(e) {
+    
+    //var scrollRef = document.getElementsByClassName("scrollDown");
+    var scrollRef = $('.scrollDown');
+
+    const height = window.innerHeight;
+    const yOffset = window.pageYOffset;
+
+
+    if (yOffset > 0) {
+      if (scrollRef.current && scrollRef.current.style.display !== 'none') {
+        scrollRef.current.style.display = 'none';
+      }
+
+      scrollRef.attr("style","display: none;")
+    } else {
+        scrollRef.attr("style","display: block;")
+
+      if (scrollRef.current) {
+        scrollRef.current.style.display = 'block';
+      }
+    }
+
+
+};
+
+        
+
+        function fnMove(){
+        var offset = $("#content_page").offset();
+        $('html, body').animate({scrollTop : offset.top}, 400);
+        $('.scrollDown').attr("style","display: none;");
+    }
+
+
+
+
+$(document).ready(function(){
+    $('html, body').animate({scrollTop : 0}, 400);
+    $.ajax({
+        type:"GET",
+        datatype:'json',
+        url:"http://duckbo.site:9530/members",
+        contentType : 'application/json;charset=UTF-8',
+        success : function(data) {
+            
+            var Participants = document.getElementById('Participants_list');
+
+            for(var i in data){
+
+                var name = data[i].name;
+                var comment = data[i].comment;
+
+                var card = document.createElement('div');
+                card.setAttribute("class","swiper-slide")
+
+                var img = document.createElement('div');
+                img.setAttribute("class","speakerProfileImg");
+                
+
+                var card_name = document.createElement('div')
+                card_name.setAttribute("class","speakerName")
+                card_name.innerHTML = '<p>' + name + '</p>'
+
+                var card_comment = document.createElement('div')
+                card_comment.setAttribute("class","speakerTitle")
+                card_comment.innerHTML = '<p>' + comment + '</p>'
+
+                card.appendChild(img);
+                card.appendChild(card_name);
+                card.appendChild(card_comment);
+
+                Participants.appendChild(card);
+            }
+            var swiperPagination = document.createElement('div');
+            swiperPagination.setAttribute("class","swiper-pagination")
+            document.getElementById('swiper-container').appendChild(swiperPagination)
+            
+
+            var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 4,
+            spaceBetween: 10,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+    });
+        }
+    });
+});
+
+
+    </script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var emailLast;
+    var phoneLast;
+    var inputEmailCheck = 0;
+    var inputPhoneCheck = 0;
+
+    $('#phone').keydown(function(event) {
+        var key = event.charCode || event.keyCode || 0;
+        $text = $(this);
+        if (key !== 8 && key !== 9) {
+            if ($text.val().length === 3) {
+             $text.val($text.val() + '-');
+            }
+            if ($text.val().length === 8) {
+                $text.val($text.val() + '-');
+            }
+        }   
+ 
+        return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));          
+    });
+
+
+    function checkEmail(str)
+    {                                                 
+        var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+        if(!reg_email.test(str)) {                            
+          return false;         
+        }                            
+        else {                       
+          return true;         
+        }                            
+    }
+    
+    function checkPhone(args) {
+        if (/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(args)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    $("#email-verify").click(function(){
+        email = $('#email').val();
+        emailLast = email;
+        if(email.length == 0) {
+            alert('입력값이 없습니다.');
+            inputEmailCheck = 1;
+        }
+        else if(checkEmail(email)) {
+            $.ajax({
+                url:'http://duckbo.site:9530/members/emailCheck/'+email,
+                success: function(data){
+                    alert('사용 가능한 이메일입니다.');
+                    inputEmailCheck = 0;
+                }, 
+                error: function(data){
+                    alert('등록된 이메일입니다.');
+                    inputEmailCheck = 1;
+                }
+            });
+        }
+        else {
+            alert('입력을 다시 확인해주세요[이메일 오류]');
+            inputEmailCheck = 1;
+        }
+    })
+
+    $("#verify").click(function(){
+        phone = $('#phone').val();
+        phoneLast = phone;
+        if(phone.length == 0){
+            alert('입력값이 없습니다.');
+            inputPhoneCheck = 1;
+        }
+        else if(checkPhone(phone)) {
+            $.ajax({
+                url:'http://duckbo.site:9530/members/phoneCheck/'+phone,
+                success: function(data) {
+                    alert('사용 가능한 번호입니다.');
+                    inputPhoneCheck = 0;
+                },
+                error: function(data) {
+                    alert('등록된 번호입니다.');
+                    inputPhoneCheck = 1;
+                }
+            });        
+        }
+        else {
+            alert('입력을 확인해주세요[번호 오류]');
+            inputPhoneCheck = 1;
+        }
+    })  
+
+    $("#apply").click(function(){
+        var obj = new Object();
+            obj.name=  $("#name").val();
+            obj.email = $('#email').val();
+            obj.phone = $('#phone').val();
+            obj.comment = $("#comment").val();
+        if(obj.name.length == 0 || obj.comment.length == 0) {
+            alert('입력되지 않은 항목이 존재합니다.');
+        }
+        else if(obj.email !== emailLast) {
+            alert('email 중복체크가 필요합니다.');
+        }
+        else if(obj.phone !== phoneLast) {
+            alert('phone 중복체크가 필요합니다.');
+        } 
+        else if(inputPhoneCheck === 1 || inputEmailCheck === 1 ) {
+            alert('email 혹은 phone 검증을 제대로 마치지 않았습니다.');
+        } 
+        else if(obj.comment.length > 15) {
+            alert('덕보가 15자 이내로만 하래요');
+        }
+        else if(obj.name.length > 6) {
+            alert('이름은 6글자 이내로 입력해주세요');
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url:"http://duckbo.site:9530/members",
+                contentType : 'application/json;charset=UTF-8',
+                dataType :"json",
+                data: JSON.stringify(obj),
+                success: function(){
+                    location.href="index.html";
+                },
+                error: function(data){
+                    alert('참여 실패');
+                }
+            });
+        }
+    })
+</script>
+</body>
+
+
+</html>

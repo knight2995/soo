@@ -1,0 +1,11 @@
+* {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    vertical-align: baseline;
+
+    border-image-repeat: stretch;
+  }
+  *::-webkit-scrollbar{
+    display: none;
+
+}

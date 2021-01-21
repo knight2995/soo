@@ -1,0 +1,84 @@
+
+
+* {
+    font-family: 'apercu-mono-regular', 'Spoqa Han Sans', 'Sans-serif';
+    letter-spacing: -0.5px;
+    word-break: break-word;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+}
+::-webkit-scrollbar{
+    display: none;;
+}
+
+
+
+
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    /* font: inherit; */
+    vertical-align: baseline;
+  }
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, main, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline
+  }
+body {
+  line-height: 1;
+}
+
+.section.fullHeight {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+.fixedBG {
+    position: fixed;
+    z-index: -999;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #ff8400
+}
+.fixedBG video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section.titleWrapper .title{
+    width:1017px
+}
+@media screen and (max-width:1280px){
+    .section.titleWrapper .title{width:780px}
+}
+@media screen and (max-width:780px){
+    .section.titleWrapper .title{width:85%}
+}
+
+
+
+.section.titleWrapper .title img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+

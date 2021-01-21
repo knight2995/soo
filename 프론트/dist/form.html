@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>술팟 송년회</title>
+        <meta charset="UTF-8">
+        <meta name = "apple-mobile-web-app-capable" content="yes">
+        <meta name = "mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/style_form.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <form>
+            <fieldset>
+                <legend>참여 신청</legend>
+                <ol>
+                    <li>
+                      <label for="name">이름</label>
+                      <input id="name" name="name" type="text" autofocus>
+                    </li>
+                    <li>
+                      <label for="email">이메일</label>
+                      <input id="email" name="email" type="text">
+                      <input type="button" id ="email-verify" value="중복 검증"> 
+                    </li>
+                    <li>
+                      <label for="phone">휴대폰</label>
+                      <input id="phone" name="phone" type="text">
+                      <input type="button" id ="verify" value="중복 검증">
+                    </li> 
+                    <li>
+                        <label for="comment">각오 한마디</label>
+                        <input id="comment" name="comment" type="text">
+                    </li>
+                </ol>
+            </fieldset>
+            <fieldset>
+                <input type="button" id="apply" value="참여">
+            </fieldset>
+        </form>
+        <script>
+            $("#email-verify").click(function(){
+                email = $('#email').val();
+                $.ajax({
+                    url:'http://duckbo.site:9530/members/emailCheck/'+email,
+                    success: function(data){
+                         alert('사용 가능한 이메일입니다.');
+                    },
+                    error: function(data){
+                        alert('등록된 이메일입니다.');
+                    }
+
+                });
+            })
+            $("#verify").click(function(){
+                phone = $('#phone').val();
+                $.ajax({
+                    url:'http://duckbo.site:9530/members/phoneCheck/'+phone,
+                    success: function(data){
+                         alert('사용 가능한 번호입니다.');
+                    },
+                    error: function(data){
+                        alert('등록된 번호입니다.');
+                    }
+                });
+            })
+            $("#apply").click(function(){
+                var obj = new Object();
+                    obj.name=  $("#name").val();
+                    obj.email = $('#email').val();
+                    obj.phone = $('#phone').val();
+                    obj.comment = $("#comment").val();
+            
+                $.ajax({
+                    type: "POST",
+                    url:"http://duckbo.site:9530/members",
+                    contentType : 'application/json;charset=UTF-8',
+                    dataType :"json",
+                    data: JSON.stringify(obj),
+                    success: function(){
+                         location.href="index.html";
+                    },
+                    error: function(data){
+                        alert('참여 실패');
+                    }
+                });
+            })
+        </script>
+    </body>
+</html>
+ 
+

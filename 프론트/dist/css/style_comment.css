@@ -1,0 +1,32 @@
+table.type09 {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+  
+  }
+  table.type09 thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #FA8258;
+    border-bottom: 3px solid #F5A9A9;
+    font: 20px Monospace, bold;
+  }
+  table.type09 tbody th {
+    width: 150px;
+    padding: 10px;  
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #F8E0E0;
+    font: 12px 맑은고딕,굴림,돋움;
+  }
+  table.type09 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    font: 12px 맑은고딕,굴림,돋움;
+  }
+
+  

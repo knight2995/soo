@@ -1,0 +1,105 @@
+body {
+    display: block;
+    margin:0;
+    padding:0;
+}
+
+video{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+
+}
+div.left{
+    width:40%;
+    float: left;
+    margin: 1px;
+
+}
+div.right{
+    width: 25%;
+    float: left;
+    text-align: left;
+    margin-top: 50px;
+    
+}
+div.right-margin{
+    float: right;
+    width: 34%;
+    margin: 1px;
+
+}   
+
+div.section{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.fixedBG{
+    position: fixed;
+    z-index: -999;
+    width: 100%;
+    height: 100vh;
+    overflow:hidden;
+    display: inline-block;
+
+}
+
+.textAlignLeft{
+    text-align: left;
+}
+
+#enroll {
+    font-size: 14px;
+    color: black;
+    font-family: 굴림, 돋움, 맑은고딕;
+    text-align: center;
+    line-height: 2.5em;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px; 
+    background: #E0F8F7;
+    display:inline;
+    padding : 10px;
+}
+
+#enroll:hover {
+	background: #F6CECE;
+	cursor: pointer;
+}
+
+#square {
+    height :450px;
+    width:100%;
+    background-color:white;
+}
+
+.comment-faded{
+    animation: fade 3s linear infinite;
+}
+
+@keyframes fade{ 
+
+
+    10%{opacity: 1.0;}
+    20%{opacity: 0.8;}
+    30%{opacity: 0.6;}
+    40%{opacity: 0.4;}
+    50%{opacity: 0.2;}
+    55%{opacity: 0.0;}
+    60%{opacity: 0.2;}
+    70%{opacity: 0.4;}
+    80%{opacity: 0.6;}
+    90%{opacity: 0.8;}
+    100%{opacity: 1.0;}
+
+    
+
+}
+
+#form {
+    color : white;
+}
