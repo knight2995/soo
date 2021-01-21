@@ -23,4 +23,4 @@ jobs:
         username: moneybook
         password: ${{ secrets.passwd }}
         port: 22
-        script: sh /home/moneybook/run.sh "$db_passwd"
+        script: sh /home/moneybook/run.sh duckbo
