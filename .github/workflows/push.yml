@@ -15,10 +15,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: delivery my server2
+      env:
+        db_passwd: ${{ secrets.DB_PASSWD }}
       uses: appleboy/ssh-action@master
       with:
         host: duckbo.site
         username: moneybook
         password: ${{ secrets.passwd }}
         port: 22
-        script: sh /home/moneybook/run.sh
+        script: sh /home/moneybook/run.sh "$db_passwd"
