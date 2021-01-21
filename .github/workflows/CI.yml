@@ -18,7 +18,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build -Pprofile=dev -Ddb_passwd=duckbo --exclude-task test
+      run: ./gradlew build -Pprofile=release -Ddb_passwd=duckbo --exclude-task test
     - name: install putty-tools
       run: sudo apt-get install putty-tools
     - name: delivery jar to my server
