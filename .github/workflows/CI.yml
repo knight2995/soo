@@ -24,4 +24,4 @@ jobs:
     - name: delivery jar to my server
       env:
         secret_pw: ${{ secrets.PASSWD }}
-      run: echo n | pscp -P 22 -pw "$secret_pw" build/libs/*.jar moneybook@139.150.64.36:/home/moneybook
+      run: echo n | pscp -P 22 -unsafe -pw "$secret_pw" build/libs/*.jar moneybook@139.150.64.36:/home/moneybook
